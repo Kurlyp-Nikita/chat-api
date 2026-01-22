@@ -20,8 +20,8 @@ from chats import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.create_chat, name='create-chat'),
-    path('<int:chat_id>/messages/', views.create_message, name='create-message'),
-    path('<int:chat_id>/', views.get_chat, name='get-chat'),
-    path('<int:chat_id>/delete/', views.delete_chat, name='delete-chat'),
+    path('chats/', views.create_chat, name='create-chat'),
+    path('chats/<int:chat_id>/messages/', views.create_message, name='create-message'),
+    path('chats/<int:chat_id>/', views.get_chat, name='get-chat'),
+    path('chats/<int:chat_id>/delete/', views.delete_chat, name='delete-chat'),
 ]
