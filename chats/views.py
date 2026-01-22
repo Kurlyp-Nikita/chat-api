@@ -62,4 +62,9 @@ def get_chat(request, chat_id):
     })
 
 
+def delete_chat(request, chat_id):
+    chat = get_object_or_404(Chat, id=chat_id)
+    chat.delete()
+
+    return JsonResponse({}, status=204)
 
