@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.create_chat, name='create-chat'),
     path('<int:chat_id>/messages/', views.create_message, name='create-message'),
+    path('<int:chat_id>/', views.get_chat, name='get-chat'),
 ]

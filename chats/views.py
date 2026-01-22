@@ -35,3 +35,31 @@ def create_message(request, chat_id):
         'text': message.text,
         'created_at': message.created_at.isoformat()
     })
+
+
+def get_chat(request, chat_id):
+    chat = get_object_or_404(Chat, id=chat_id)
+
+    limit = int(request.GET.get("limit", 20))
+    if limit > 100:
+        limit = 100
+
+    # Последние сообщения сначала
+    messages = chat.messages.order_by("-created_at")[:limit]
+
+    return JsonResponse({
+        "id": chat.id,
+        "title": chat.title,
+        "created_at": chat.created_at.isoformat(),
+        "messages": [
+            {
+                "id": m.id,
+                "text": m.text,
+                "created_at": m.created_at.isoformat(),
+            }
+            for m in messages
+        ]
+    })
+
+
+
