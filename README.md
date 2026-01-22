@@ -5,13 +5,13 @@ API для чатов и сообщений.
 ## Запуск
 
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
 #### API: http://localhost:8000
 #### Админка: http://localhost:8000/admin
 
-(после запуска создать суперпользователя: ``` docker-compose exec web python manage.py createsuperuser ```)
+(после запуска создать суперпользователя: ``` docker compose exec web python manage.py createsuperuser ```)
 
 ### API
 #### Метод	Путь	Описание
@@ -29,21 +29,31 @@ curl -X POST http://localhost:8000/chats/ -d "title=Тест"
 ```
 
 
-# Отправить сообщение
+## Отправить сообщение
 ```bash
-curl -X POST http://localhost:8000/chats/1/messages/ -d "text=Привет"
+curl -X POST http://localhost:8000/chats/3/messages/ -d "text=Привет"
 ```
 
 
-# Получить чат
+## Получить чат
 ```bash
-curl "http://localhost:8000/chats/1/?limit=5"
+curl "http://localhost:8000/chats/3/?limit=5"
 ```
 
 
-# Удалить чат
+## Удалить чат
 ```bash
-curl -X DELETE http://localhost:8000/chats/1/delete/
+curl -X DELETE http://localhost:8000/chats/3/delete/
+```
+
+
+## Тесты
+
+Проект включает 5 unit-тестов, покрывающих основные сценарии API:
+
+```bash
+# Запуск тестов
+docker compose exec web python manage.py test
 ```
 
 
